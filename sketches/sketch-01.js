@@ -1,4 +1,4 @@
-const canvasSketch = require('canvas-sketch');
+const canvasSketch = require('canvas-sketch')
 const {arrayWithCount} = require('./util')
 
 const canvasWidth = 400
@@ -6,7 +6,7 @@ const canvasHeight = 400
 
 const settings = {
     dimensions: [canvasWidth, canvasHeight],
-};
+}
 
 function Rect(x, y, w, h, isOn = false) {
     this.x = x
@@ -58,10 +58,10 @@ const sketch = ({canvas, render}) => {
         renderBackground(context, width, height)
 
         renderGrid(context, grid, gap)
-    };
-};
+    }
+}
 
-canvasSketch(sketch, settings);
+canvasSketch(sketch, settings)
 
 function findBoxIndex(x, y, grid) {
     for (let r = 0; r < grid.length; r++) {
@@ -126,6 +126,6 @@ function renderGrid(context, grid, gap) {
 }
 
 function renderBackground(context, width, height) {
-    context.fillStyle = 'white';
-    context.fillRect(0, 0, width, height);
+    context.fillStyle = 'white'
+    context.fillRect(0, 0, width, height)
 }
