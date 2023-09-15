@@ -13,13 +13,13 @@ const sketch = () => {
         drawBackground(context)
         context.fillStyle = 'black'
 
-
         drawLines(context, width, height)
         // drawCircleAndDot(context, width, height)
     }
 }
 
 canvasSketch(sketch, settings)
+
 
 function drawLines(context, width, height) {
     context.save()
@@ -32,11 +32,12 @@ function drawLines(context, width, height) {
     const w = width * .005
     const h = height * .1
 
-    const slices = 12
+    const slices = 80
     const radius = width * 0.3
 
     for (let i = 0; i < slices; i++) {
-        const angle = degrees(360 / slices * i)
+        const slice = degrees(360 / slices)
+        const angle = slice * i
 
         const randomHeight = Math.random()
 
@@ -47,11 +48,23 @@ function drawLines(context, width, height) {
         context.translate(centerX, centerY)
         context.translate(x, y)
         context.rotate(-angle)
-        context.scale(random(.5, 3), 1)
+        context.scale(random(.1, 2), random(.2, .5))
 
         context.beginPath()
-        context.rect(-w / 2, -h / 2, w, h)
+        context.rect(-w / 2, random(0, -h / 2), w, h)
         context.fill()
+        context.restore()
+
+        context.save()
+
+        context.translate(centerX, centerY)
+        context.rotate(-angle)
+
+        context.lineWidth = random(3, 16)
+        context.beginPath()
+        context.arc(0, 0, radius * random(.7, 1.3), slice * random(1, -2), slice * random(0, 5))
+        context.stroke()
+
         context.restore()
     }
 }
